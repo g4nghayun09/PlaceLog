@@ -1,0 +1,11 @@
+spring:
+  config:
+    import: optional:classpath:application-secret.yml
+  datasource:
+    url: jdbc:mysql://localhost:3306/placelog?serverTimezone=Asia/Seoul
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
