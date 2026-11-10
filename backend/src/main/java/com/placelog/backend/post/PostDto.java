@@ -21,7 +21,8 @@ public class PostDto {
             Long categoryId, String categoryName,
             String title, String content,
             String placeName, String address, Double latitude, Double longitude,
-            List<String> imageUrls, LocalDateTime createdAt
+            List<String> imageUrls, LocalDateTime createdAt,
+            long likeCount
     ) {
         public static Response from(Post p) {
             return new Response(
@@ -30,7 +31,8 @@ public class PostDto {
                     p.getTitle(), p.getContent(),
                     p.getPlaceName(), p.getAddress(), p.getLatitude(), p.getLongitude(),
                     p.getImages().stream().map(PostImage::getImageUrl).toList(),
-                    p.getCreatedAt()
+                    p.getCreatedAt(),
+                    p.getLikeCount()
             );
         }
     }
