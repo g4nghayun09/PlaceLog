@@ -12,6 +12,6 @@ public class CategoryController {
 
     @GetMapping
     public List<Category> list() {
-        return categoryRepository.findAll();
+        return categoryRepository.findAll(org.springframework.data.domain.Sort.by("categoryId"));
     }
 }

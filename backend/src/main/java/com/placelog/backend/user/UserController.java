@@ -36,4 +36,9 @@ public class UserController {
         Long userId = (Long) session.getAttribute("userId");
         return userId == null ? ResponseEntity.status(401).build() : ResponseEntity.ok(userId);
     }
+
+    @GetMapping("/check")
+    public boolean check(@RequestParam String loginId) {
+        return userService.isAvailable(loginId);
+    }
 }

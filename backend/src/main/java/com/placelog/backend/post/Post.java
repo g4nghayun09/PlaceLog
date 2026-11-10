@@ -13,6 +13,8 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 public class Post {
+    @org.hibernate.annotations.Formula("(select count(*) from likes l where l.post_id = post_id)")
+    private long likeCount;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long postId;

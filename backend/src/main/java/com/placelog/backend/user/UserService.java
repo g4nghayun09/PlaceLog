@@ -27,4 +27,8 @@ public class UserService {
         }
         return user;
     }
+
+    public boolean isAvailable(String loginId) {
+        return !userRepository.existsByLoginId(loginId);
+    }
 }
