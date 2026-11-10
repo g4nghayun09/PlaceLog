@@ -106,9 +106,13 @@ export default function PostWrite() {
       imageUrls: images,
     };
     try {
-      if (isEdit) await api.put(`/posts/${postId}`, body);
-      else await api.post("/posts", body);
-      navigate("/");
+      if (isEdit) {
+        await api.put(`/posts/${postId}`, body);
+        navigate(`/posts/${postId}`);
+      } else {
+        const res = await api.post("/posts", body);
+        navigate(`/posts/${res.data.postId}`);
+      }
     } catch (err) {
       alert(typeof err.response?.data === "string" ? err.response.data : "저장에 실패했어요.");
     }
