@@ -3,6 +3,7 @@ import Main from "./pages/Main";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import PostWrite from "./pages/PostWrite";
+import PostDetail from "./pages/PostDetail";
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
       <Route path="/signup" element={<Signup />} />
       <Route path="/write" element={<PostWrite />} />
       <Route path="/posts/:postId/edit" element={<PostWrite />} />
+      <Route path="/posts/:postId" element={<PostDetail />} />
     </Routes>
   );
 }
