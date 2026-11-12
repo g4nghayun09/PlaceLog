@@ -1,0 +1,59 @@
+.mypage { padding-top: 48px; padding-bottom: 64px; display: flex; flex-direction: column; gap: 40px; }
+
+.mypage-heading { display: flex; justify-content: space-between; align-items: center; }
+.mypage-heading h1 { font-size: 34px; font-weight: 500; letter-spacing: -1.2px; }
+.logout { font-size: 12px; color: var(--sub); }
+.logout:hover { color: #c0392b; }
+
+/* 프로필 */
+.profile { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 28px 32px; border-radius: 12px; background: #eaf1e5; }
+.profile-info { display: flex; align-items: center; gap: 22px; }
+.avatar.xl { width: 76px; height: 76px; font-size: 24px; flex-shrink: 0; }
+.profile-name { display: flex; align-items: center; gap: 12px; }
+.profile-name strong { font-size: 24px; }
+.profile-name span { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--sub); }
+.profile-bio { margin-top: 8px; font-size: 14px; color: var(--sub); }
+
+.profile-side { display: flex; align-items: center; gap: 32px; }
+.stat { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.stat strong { font-family: 'Inter', sans-serif; font-size: 26px; font-weight: 600; color: var(--green); }
+.stat span { font-size: 11px; color: var(--sub); }
+
+.btn-light { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; border-radius: 6px; border: 1px solid var(--line); background: #fff; font-size: 13px; font-weight: 700; color: var(--text); }
+.btn-light:hover { border-color: var(--green); color: var(--green); }
+
+/* 섹션 */
+.my-section { display: flex; flex-direction: column; gap: 24px; }
+.my-section.liked { padding-top: 36px; border-top: 1px solid var(--line); }
+.section-heading { display: flex; justify-content: space-between; align-items: center; }
+.section-heading h2 { font-size: 23px; font-weight: 700; letter-spacing: -0.5px; }
+.section-heading h2 em { font-style: normal; font-size: 14px; font-weight: 400; color: var(--green); margin-left: 10px; }
+.section-desc { margin-top: 8px; font-size: 13px; color: var(--sub); }
+.text-link { font-size: 13px; color: var(--green); }
+
+.card-grid { display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 28px; row-gap: 40px; }
+
+.owned { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.owner-controls { display: flex; justify-content: space-between; align-items: center; padding-top: 13px; border-top: 1px solid var(--line); }
+.owner-controls > span { font-size: 11px; color: var(--sub); }
+.owner-controls div { display: flex; gap: 18px; font-size: 12px; }
+.owner-controls a:hover { color: var(--green); }
+.owner-controls button { font-size: 12px; color: var(--sub); }
+.owner-controls button:hover { color: #c0392b; }
+
+.view-all { display: flex; justify-content: center; padding-top: 6px; }
+
+.empty-box { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 56px 0; border: 1px dashed var(--line); border-radius: 12px; font-size: 14px; color: var(--sub); }
+.empty-box a { font-size: 13px; font-weight: 700; color: var(--green); }
+
+@media (max-width: 1024px) {
+  .card-grid { grid-template-columns: repeat(2, 1fr); }
+  .profile { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 768px) {
+  .mypage { padding-top: 30px; }
+  .mypage-heading h1 { font-size: 26px; }
+  .card-grid { grid-template-columns: 1fr; }
+  .profile { padding: 24px 20px; }
+  .profile-side { width: 100%; justify-content: space-between; gap: 16px; }
+}

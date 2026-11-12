@@ -23,8 +23,12 @@ export default function Signup() {
 
   const checkId = async () => {
     if (!ID_RULE.test(form.loginId)) return setIdStatus("invalid");
-    const res = await api.get("/users/check", { params: { loginId: form.loginId } });
-    setIdStatus(res.data ? "ok" : "taken");
+    try {
+      const res = await api.get("/users/check", { params: { loginId: form.loginId } });
+      setIdStatus(res.data ? "ok" : "taken");
+    } catch (err) {
+      alert(`중복 확인 실패 (${err.response?.status || "서버 연결 안 됨"}) - 백엔드를 재시작했는지 확인해줘`);
+    }
   };
 
   const pwValid = PW_RULE.test(form.password);
@@ -115,8 +119,18 @@ export default function Signup() {
           ))}
         </div>
 
-        <button className="btn-submit" disabled={!canSubmit}>가입하고 기록 시작하기</button>
+        {!canSubmit && (
+          <p className="help error">
+            {idStatus !== "ok" ? "아이디 중복 확인을 해주세요."
+              : !pwValid ? "비밀번호는 영문+숫자 포함 8~20자예요."
+              : !pwMatch ? "비밀번호 확인이 일치하지 않아요."
+              : !nameValid ? "이름은 2~10자로 입력해주세요."
+              : "필수 약관에 모두 동의해주세요."}
+          </p>
+        )}
 
+        <button className="btn-submit" disabled={!canSubmit}>가입하고 기록 시작하기</button>
+        
         <div className="auth-switch plain">
           이미 계정이 있으신가요?
           <Link to="/login">로그인 →</Link>
