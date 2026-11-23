@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class PostDto {
+    // 필드들임
     public record Request(
             @NotNull Long categoryId,
             @NotBlank String title,
@@ -16,6 +17,7 @@ public class PostDto {
             List<String> imageUrls
     ) {}
 
+    // entity를 dto로 변환
     public record Response(
             Long postId, Long userId, String writerName,
             Long categoryId, String categoryName,
