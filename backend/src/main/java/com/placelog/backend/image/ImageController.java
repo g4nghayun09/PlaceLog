@@ -10,20 +10,26 @@ import java.util.*;
 @RestController
 @RequestMapping("/api/images")
 public class ImageController {
+    // 이미지 파일을 저장할 폴더의 경로
     public static final Path UPLOAD_DIR = Paths.get("uploads").toAbsolutePath();
 
     @PostMapping
     public List<String> upload(@RequestParam("files") List<MultipartFile> files, HttpSession session) throws IOException {
+        // 로그인 확인
         if (session.getAttribute("userId") == null) throw new IllegalStateException("로그인이 필요합니다.");
+        // 폴더 생성 (없으면)
         Files.createDirectories(UPLOAD_DIR);
-
+        // 이미지 url 저장할 리스트
         List<String> urls = new ArrayList<>();
         for (MultipartFile file : files) {
+            // 이미지 확장자 검사
             String type = file.getContentType();
             if (!"image/jpeg".equals(type) && !"image/png".equals(type)) {
                 throw new IllegalArgumentException("JPG, PNG 파일만 올릴 수 있어요.");
             }
+            // randomUUID가 고유한 랜덤 문자열을 생성함.
             String name = UUID.randomUUID() + ("image/png".equals(type) ? ".png" : ".jpg");
+            // 실제 파일에 저장함
             file.transferTo(UPLOAD_DIR.resolve(name));
             urls.add("http://localhost:8080/uploads/" + name);
         }

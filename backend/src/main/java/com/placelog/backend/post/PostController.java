@@ -13,6 +13,7 @@ import java.util.List;
 public class PostController {
     private final PostService postService;
 
+    // 게시함
     @PostMapping
     public PostDto.Response create(@Valid @RequestBody PostDto.Request req, HttpSession session) {
         return postService.create(loginUser(session), req);
@@ -39,6 +40,7 @@ public class PostController {
         return ResponseEntity.ok().build();
     }
 
+    // 로그인 여부를 확인하는 코드
     private Long loginUser(HttpSession session) {
         Long userId = (Long) session.getAttribute("userId");
         if (userId == null) throw new IllegalStateException("로그인이 필요합니다.");
